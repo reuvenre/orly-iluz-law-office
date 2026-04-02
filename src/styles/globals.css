@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+/* ── Smooth anchor scrolling ── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Base typography ── */
+body {
+  font-family: "Heebo", "Rubik", system-ui, -apple-system, "Segoe UI", Arial,
+    sans-serif;
+  background: #070b18;
+  color: #eaf0ff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Premium scrollbar ── */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: #070b18;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(214, 167, 74, 0.25);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(214, 167, 74, 0.45);
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
