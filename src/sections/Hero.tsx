@@ -34,15 +34,20 @@ export function Hero({ content }: { content: Content }) {
   return (
     <section
       id="top"
-      className="relative overflow-hidden flex items-center min-h-[calc(100vh-56px)] hero-grid"
+      className="relative overflow-hidden flex items-center min-h-[calc(100vh-56px)]"
     >
       {/* ── Backdrop orbs ── */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[750px] w-[1100px] rounded-full bg-[#123CFF]/15 blur-[160px]" />
         <div className="absolute bottom-[-15%] right-[-18%] h-[500px] w-[500px] rounded-full bg-[#D6A74A]/10 blur-[120px]" />
         <div className="absolute top-[25%] left-[-15%] h-[350px] w-[350px] rounded-full bg-[#D6A74A]/7 blur-[100px]" />
-        {/* Vignette overlay to soften grid edges */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,transparent_40%,#070b18_100%)]" />
+        {/* Concentric radial rings */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[55%]">
+          <div aria-hidden="true" className="absolute rounded-full border border-white/[0.028] -translate-x-1/2 -translate-y-1/2 size-[520px]" />
+          <div aria-hidden="true" className="absolute rounded-full border border-white/[0.022] -translate-x-1/2 -translate-y-1/2 size-[760px]" />
+          <div aria-hidden="true" className="absolute rounded-full border border-white/[0.016] -translate-x-1/2 -translate-y-1/2 size-[1000px]" />
+          <div aria-hidden="true" className="absolute rounded-full border border-white/[0.01] -translate-x-1/2 -translate-y-1/2 size-[1240px]" />
+        </div>
       </div>
 
       <div className="mx-auto max-w-4xl px-4 py-24 md:py-32 w-full text-center relative">
