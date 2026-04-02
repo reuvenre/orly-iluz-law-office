@@ -45,7 +45,7 @@ export function Process() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.05 }}
-            className="font-display text-3xl font-bold text-white md:text-4xl"
+            className="text-3xl font-bold text-white md:text-4xl"
           >
             כיצד זה עובד
           </motion.h2>
@@ -90,10 +90,10 @@ export function Process() {
                   </div>
                 </div>
 
-                <h3 className="font-display text-lg font-bold text-white mb-2">
+                <h3 className="text-lg font-bold text-white mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-white/55 leading-relaxed max-w-[18rem]">
+                <p className="text-sm text-white/55 leading-relaxed max-w-[18rem] font-light">
                   {step.desc}
                 </p>
               </motion.div>

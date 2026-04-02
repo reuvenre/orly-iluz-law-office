@@ -27,7 +27,7 @@ export function About({ content }: { content: Content }) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: 0.05 }}
-              className="font-display text-3xl font-bold text-white md:text-4xl leading-tight"
+              className="text-3xl font-bold text-white md:text-4xl leading-tight"
             >
               {content.about.title}
             </motion.h2>
@@ -59,7 +59,7 @@ export function About({ content }: { content: Content }) {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.45, delay: 0.12 + i * 0.05 }}
-                  className="text-white/60 leading-relaxed text-sm md:text-base"
+                  className="text-white/65 leading-relaxed text-sm md:text-base font-light"
                 >
                   {p}
                 </motion.p>
@@ -85,7 +85,7 @@ export function About({ content }: { content: Content }) {
                     <div className="inline-flex size-10 items-center justify-center rounded-xl bg-[#D6A74A]/10 text-[#D6A74A] mb-3">
                       <Icon className="size-5" />
                     </div>
-                    <h3 className="font-display font-bold text-white">{h.title}</h3>
+                    <h3 className="font-bold text-white">{h.title}</h3>
                     <p className="mt-1.5 text-sm text-white/50 leading-relaxed">
                       {h.description}
                     </p>

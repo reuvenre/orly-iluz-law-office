@@ -46,7 +46,7 @@ export function Testimonials({ content }: { content: Content }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.05 }}
-            className="font-display text-3xl font-bold text-white md:text-4xl"
+            className="text-3xl font-bold text-white md:text-4xl"
           >
             {content.testimonials.title}
           </motion.h2>
@@ -74,14 +74,14 @@ export function Testimonials({ content }: { content: Content }) {
               {/* Decorative quote mark */}
               <div
                 aria-hidden="true"
-                className="font-display absolute top-4 left-8 text-[7rem] leading-none text-[#D6A74A]/8 select-none font-black"
+                className="absolute top-4 left-8 text-[7rem] leading-none text-[#D6A74A]/8 select-none font-black"
               >
                 "
               </div>
 
               <div className="relative">
                 <Stars />
-                <p className="mt-5 font-display text-xl md:text-2xl leading-relaxed text-white/80 font-light">
+                <p className="mt-5 text-xl md:text-2xl leading-relaxed text-white/80 font-light">
                   &ldquo;{featured.text}&rdquo;
                 </p>
                 <div className="mt-6 flex items-center gap-3 pt-5 border-t border-white/8">
@@ -104,7 +104,7 @@ export function Testimonials({ content }: { content: Content }) {
                 className="rounded-2xl border border-white/8 bg-white/[0.025] p-6 flex flex-col hover:border-white/15 transition-colors duration-300"
               >
                 <Stars />
-                <p className="mt-4 text-sm leading-relaxed text-white/65 flex-1">
+                <p className="mt-4 text-sm leading-relaxed text-white/65 flex-1 font-light">
                   &ldquo;{t.text}&rdquo;
                 </p>
                 <div className="mt-5 pt-4 border-t border-white/8 flex items-center gap-3">

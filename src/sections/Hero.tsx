@@ -67,7 +67,7 @@ export function Hero({ content }: { content: Content }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.07 }}
-          className="font-display text-[2.6rem] font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-[4.5rem]"
+          className="text-[2.6rem] font-black leading-tight tracking-tight text-white md:text-6xl lg:text-[4.5rem]"
         >
           {headlineMain}
           {headlineGold && (
@@ -83,7 +83,7 @@ export function Hero({ content }: { content: Content }) {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.15 }}
-          className="mt-6 mx-auto max-w-2xl text-lg leading-relaxed text-white/55 md:text-xl"
+          className="mt-6 mx-auto max-w-2xl text-lg leading-relaxed text-white/55 md:text-xl font-light"
         >
           {content.hero.subheadline}
         </motion.p>
@@ -99,7 +99,7 @@ export function Hero({ content }: { content: Content }) {
             asChild
             size="lg"
             variant="secondary"
-            className="px-10 shadow-lg shadow-[#D6A74A]/20 font-display text-base"
+            className="px-10 shadow-lg shadow-[#D6A74A]/20 text-base"
           >
             <a href="#contact">{content.hero.ctaPrimary}</a>
           </Button>

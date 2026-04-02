@@ -7,17 +7,12 @@ html {
 
 /* ── Base typography ── */
 body {
-  font-family: "Heebo", "Rubik", system-ui, -apple-system, "Segoe UI", Arial,
-    sans-serif;
+  font-family: "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
   background: #070b18;
   color: #eaf0ff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-/* ── Serif display font for headings ── */
-.font-display {
-  font-family: "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+  font-weight: 400;
 }
 
 /* ── Gold shimmer animation ── */

@@ -25,7 +25,7 @@ export function Services({ content }: { content: Content }) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.45, delay: 0.05 }}
-            className="font-display text-3xl font-bold text-white md:text-4xl"
+            className="text-3xl font-bold text-white md:text-4xl"
           >
             {content.services.title}
           </motion.h2>
@@ -70,8 +70,8 @@ export function Services({ content }: { content: Content }) {
                   <Icon className="size-6" />
                 </div>
 
-                <h3 className="font-display text-lg font-bold text-white">{s.title}</h3>
-                <p className="mt-2 text-sm text-white/50 leading-relaxed">{s.description}</p>
+                <h3 className="text-lg font-bold text-white">{s.title}</h3>
+                <p className="mt-2 text-sm text-white/55 leading-relaxed font-light">{s.description}</p>
 
                 <ul className="mt-5 space-y-2.5">
                   {s.bullets.map((b) => (
