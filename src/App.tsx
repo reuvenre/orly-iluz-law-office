@@ -4,10 +4,15 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFab } from "@/components/WhatsAppFab";
 import { Hero } from "@/sections/Hero";
+import { Process } from "@/sections/Process";
 import { Services } from "@/sections/Services";
 import { About } from "@/sections/About";
 import { Testimonials } from "@/sections/Testimonials";
 import { Contact } from "@/sections/Contact";
+
+function GoldDivider() {
+  return <hr className="divider-gold border-0 mx-auto max-w-5xl" />;
+}
 
 export default function App() {
   const c = contentHe;
@@ -17,9 +22,15 @@ export default function App() {
       <Header content={c} />
       <main>
         <Hero content={c} />
+        <GoldDivider />
+        <Process />
+        <GoldDivider />
         <Services content={c} />
+        <GoldDivider />
         <About content={c} />
+        <GoldDivider />
         <Testimonials content={c} />
+        <GoldDivider />
         <Contact content={c} />
       </main>
       <Footer content={c} />
@@ -38,4 +49,3 @@ export default function App() {
     </div>
   );
 }
-

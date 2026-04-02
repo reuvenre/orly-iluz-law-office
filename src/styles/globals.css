@@ -15,6 +15,54 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ── Serif display font for headings ── */
+.font-display {
+  font-family: "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+}
+
+/* ── Gold shimmer animation ── */
+@keyframes shimmer {
+  0%   { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.gold-shimmer {
+  background: linear-gradient(
+    90deg,
+    #c9922e 0%,
+    #f5d89b 35%,
+    #e8c06a 50%,
+    #f5d89b 65%,
+    #c9922e 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+
+/* ── Section gold divider ── */
+.divider-gold {
+  height: 1px;
+  border: none;
+  background: linear-gradient(
+    to left,
+    transparent 0%,
+    rgba(214, 167, 74, 0.18) 50%,
+    transparent 100%
+  );
+}
+
+/* ── Architectural grid pattern (hero bg) ── */
+.hero-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+  background-position: center;
+}
+
 /* ── Premium scrollbar ── */
 ::-webkit-scrollbar {
   width: 5px;
