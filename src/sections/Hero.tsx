@@ -2,7 +2,8 @@ import { useEffect, useRef } from "react";
 import type { Content } from "@/content/he";
 import { Button } from "@/components/ui/button";
 import { motion, useMotionValue, useTransform, animate, useInView } from "motion/react";
-import { ArrowDown, MessageCircle, Scale } from "lucide-react";
+import { ArrowDown, MessageCircle } from "lucide-react";
+import { HeroBackground } from "@/components/HeroBackground";
 
 const stats = [
   { to: 10, suffix: "+", label: "שנות ניסיון" },
@@ -41,13 +42,7 @@ export function Hero({ content }: { content: Content }) {
         <div className="absolute -top-40 left-1/2 -translate-x-1/2 h-[750px] w-[1100px] rounded-full bg-[#123CFF]/15 blur-[160px]" />
         <div className="absolute bottom-[-15%] right-[-18%] h-[500px] w-[500px] rounded-full bg-[#D6A74A]/10 blur-[120px]" />
         <div className="absolute top-[25%] left-[-15%] h-[350px] w-[350px] rounded-full bg-[#D6A74A]/7 blur-[100px]" />
-        {/* Scales of justice watermark */}
-        <div
-          aria-hidden="true"
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[52%] text-[#D6A74A] opacity-[0.07]"
-        >
-          <Scale strokeWidth={0.5} className="size-[520px]" />
-        </div>
+        <HeroBackground />
       </div>
 
       <div className="mx-auto max-w-4xl px-4 py-24 md:py-32 w-full text-center relative">
