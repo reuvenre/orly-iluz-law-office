@@ -80,7 +80,7 @@ export const contentHe: Content = {
     { id: "contact", label: "צור קשר" },
   ],
   hero: {
-    headline: "ליווי משפטי בעסקאות נדל״ן — בביטחון, בשקט נפשי, ובדיוק.",
+    headline: "ליווי משפטי — ללא פשרות.",
     subheadline:
       "רכישה, מכירה והתחדשות עירונית — עם אסטרטגיה משפטית חכמה, זמינות גבוהה, ותשומת לב לפרטים שמגנים עליכם באמת.",
     ctaPrimary: "לתיאום שיחה",
@@ -183,11 +183,11 @@ export const contentHe: Content = {
   },
   links: {
     calendlyUrl: "https://calendly.com/",
-    whatsappNumberE164: "972500000000",
+    whatsappNumberE164: "972528155531",
     whatsappPrefill: "שלום, אשמח לייעוץ בנושא עסקת נדל״ן.",
-    phoneTel: "+972-50-000-0000",
-    email: "office@example.com",
-    address: "ישראל",
+    phoneTel: "052-8155531",
+    email: "orly@iluz-law.com",
+    address: "רחוב הרוקמים 23, חולון (מגדל B-GREEN קומה 2)",
   },
 };
 
