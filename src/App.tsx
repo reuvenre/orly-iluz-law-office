@@ -9,6 +9,7 @@ import { Services } from "@/sections/Services";
 import { About } from "@/sections/About";
 import { Testimonials } from "@/sections/Testimonials";
 import { Contact } from "@/sections/Contact";
+import { CtaStrip } from "@/sections/CtaStrip";
 
 function GoldDivider() {
   return <hr className="divider-gold border-0 mx-auto max-w-5xl" />;
@@ -32,6 +33,8 @@ export default function App() {
         <Testimonials content={c} />
         <GoldDivider />
         <Contact content={c} />
+        <GoldDivider />
+        <CtaStrip content={c} />
       </main>
       <Footer content={c} />
       <WhatsAppFab content={c} />

@@ -6,7 +6,7 @@ import { ArrowDown, MessageCircle, Scale } from "lucide-react";
 
 const stats = [
   { to: 10, suffix: "+", label: "שנות ניסיון" },
-  { to: 200, suffix: "+", label: "עסקאות הושלמו" },
+  { to: 50000, suffix: "+", label: "עסקאות הושלמו" },
   { to: 100, suffix: "%", label: "ליווי אישי" },
 ];
 
