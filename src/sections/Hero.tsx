@@ -67,7 +67,7 @@ export function Hero({ content }: { content: Content }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.07 }}
-          className="text-[2.6rem] font-black leading-tight tracking-tight text-white md:text-6xl lg:text-[4.5rem]"
+          className="text-[2.8rem] font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-[4.75rem]"
         >
           {headlineMain}
           {headlineGold && (

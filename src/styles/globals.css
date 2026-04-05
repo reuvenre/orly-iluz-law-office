@@ -7,7 +7,7 @@ html {
 
 /* ── Base typography ── */
 body {
-  font-family: "Frank Ruhl Libre", Georgia, "Times New Roman", serif;
+  font-family: "Rubik", system-ui, -apple-system, sans-serif;
   background: #070b18;
   color: #eaf0ff;
   -webkit-font-smoothing: antialiased;
