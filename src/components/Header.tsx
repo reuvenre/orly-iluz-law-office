@@ -21,13 +21,12 @@ export function Header({ content }: { content: Content }) {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3.5">
 
           {/* ── Logo ── */}
-          <a href="#top" className="flex items-baseline gap-2 group" onClick={() => setOpen(false)}>
-            <span className="text-base font-bold text-white tracking-tight group-hover:text-white/90 transition-colors">
-              {content.brand.name}
-            </span>
-            <span className="hidden sm:block text-sm text-[#D6A74A]/70 font-normal">
-              {content.brand.subtitle}
-            </span>
+          <a href="#top" className="flex items-center gap-3 group" onClick={() => setOpen(false)}>
+            <img
+              src="/logo-orly.png"
+              alt={content.brand.name}
+              className="h-10 w-auto object-contain"
+            />
           </a>
 
           {/* ── Desktop nav ── */}
