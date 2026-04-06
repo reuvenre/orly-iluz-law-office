@@ -37,7 +37,8 @@ body {
   will-change: transform;
 }
 
-.marquee-photos:hover {
+.marquee-photos:hover,
+.marquee-photos.paused {
   animation-play-state: paused;
 }
 

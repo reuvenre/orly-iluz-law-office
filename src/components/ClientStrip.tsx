@@ -7,6 +7,8 @@
  * 3. Save — done.
  */
 
+import { useEffect, useState } from "react";
+
 const PHOTOS: string[] = [
   "/clients/pic1.jpg",
   "/clients/pic2.jpg",
@@ -18,8 +20,28 @@ const PHOTOS: string[] = [
 ];
 
 export function ClientStrip() {
+  const [ready, setReady] = useState(false);
   // ×2 — one real set + one clone for seamless loop. Animation moves exactly -50%.
   const items = [...PHOTOS, ...PHOTOS];
+
+  // Preload all images via JS; start animation once every image resolves (load or error).
+  useEffect(() => {
+    let resolved = 0;
+    const total = PHOTOS.length;
+    const done = () => {
+      resolved++;
+      if (resolved >= total) setReady(true);
+    };
+    PHOTOS.forEach((src) => {
+      const img = new Image();
+      img.onload = done;
+      img.onerror = done;
+      img.src = src;
+    });
+    // Safety fallback — show after 4 s regardless
+    const t = setTimeout(() => setReady(true), 4000);
+    return () => clearTimeout(t);
+  }, []);
 
   return (
     <div className="relative py-10">
@@ -37,18 +59,18 @@ export function ClientStrip() {
           <div className="pointer-events-none absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-[#070b18] to-transparent" />
           <div className="pointer-events-none absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-[#070b18] to-transparent" />
 
-          <div className="flex gap-5 marquee-photos">
+          <div className={`flex gap-5 marquee-photos${ready ? "" : " paused"}`}>
             {items.map((src, i) => (
               <div
                 key={i}
-                className="shrink-0 w-64 aspect-[4/3] rounded-2xl overflow-hidden border border-white/10"
+                className="shrink-0 w-56 aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 md:w-64"
               >
                 <img
                   src={src}
                   alt="עסקה שהושלמה"
                   loading="eager"
                   decoding="async"
-                  fetchPriority={i < PHOTOS.length ? "high" : "auto"}
+                  width={512}
                   className="w-full h-full object-cover opacity-85 hover:opacity-100 transition-opacity duration-300"
                   onError={(e) => {
                     const el = e.currentTarget.parentElement as HTMLElement;
