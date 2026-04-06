@@ -46,6 +46,9 @@ export function ClientStrip() {
                 <img
                   src={src}
                   alt="עסקה שהושלמה"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="low"
                   className="w-full h-full object-cover opacity-85 hover:opacity-100 transition-opacity duration-300"
                   onError={(e) => {
                     const el = e.currentTarget.parentElement as HTMLElement;
