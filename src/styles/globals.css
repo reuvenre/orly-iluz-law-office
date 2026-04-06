@@ -22,8 +22,8 @@ body {
 }
 
 .marquee-track {
-  animation: marquee 28s linear infinite;
-  width: max-content;
+  animation: marquee var(--marquee-duration, 28s) linear infinite;
+  will-change: transform;
 }
 
 /* ── Skyline float (hero background buildings) ── */
