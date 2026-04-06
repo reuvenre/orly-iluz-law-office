@@ -48,7 +48,7 @@ export function ClientStrip() {
                   alt="עסקה שהושלמה"
                   loading="eager"
                   decoding="async"
-                  fetchPriority="low"
+                  fetchPriority={i < PHOTOS.length ? "high" : "auto"}
                   className="w-full h-full object-cover opacity-85 hover:opacity-100 transition-opacity duration-300"
                   onError={(e) => {
                     const el = e.currentTarget.parentElement as HTMLElement;
