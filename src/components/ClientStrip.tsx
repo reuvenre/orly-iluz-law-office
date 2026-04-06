@@ -18,8 +18,8 @@ const PHOTOS: string[] = [
 ];
 
 export function ClientStrip() {
-  // ×3 repeats guarantees seamless loop regardless of screen width
-  const items = [...PHOTOS, ...PHOTOS, ...PHOTOS];
+  // ×2 — one real set + one clone for seamless loop. Animation moves exactly -50%.
+  const items = [...PHOTOS, ...PHOTOS];
 
   return (
     <div className="relative py-10">
