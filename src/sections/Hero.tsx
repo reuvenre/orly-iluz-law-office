@@ -46,15 +46,18 @@ export function Hero({ content }: { content: Content }) {
       </div>
 
       <div className="mx-auto max-w-4xl px-4 py-24 md:py-32 w-full text-center relative">
-        {/* ── Label pill ── */}
+        {/* ── Logo ── */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="inline-flex items-center gap-2 rounded-full border border-[#D6A74A]/30 bg-[#D6A74A]/8 px-4 py-1.5 text-xs font-medium tracking-wide text-[#D6A74A] mb-8"
+          className="flex justify-center mb-8"
         >
-          <span className="size-1.5 rounded-full bg-[#D6A74A] animate-pulse" />
-          משרד עורכי דין — נדל״ן
+          <img
+            src="/logo-orly.png"
+            alt="אורלי אילוז משרד עורכי דין"
+            className="h-20 w-auto object-contain invert mix-blend-screen"
+          />
         </motion.div>
 
         {/* ── Headline (serif + shimmer) ── */}
