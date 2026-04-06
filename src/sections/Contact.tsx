@@ -168,7 +168,7 @@ export function Contact({ content }: { content: Content }) {
 
             {/* Email */}
             <a
-              href={`https://mail.google.com/mail/?view=cm&to=${c.links.email}`}
+              href={`https://mail.google.com/mail/?view=cm&fs=1&to=${c.links.email}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.025] px-5 py-4 text-sm text-white/75 hover:border-white/15 hover:bg-white/[0.05] transition-all duration-200"
