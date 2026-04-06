@@ -82,11 +82,11 @@ export function About({ content }: { content: Content }) {
                     whileHover={{ y: -3 }}
                     className="rounded-2xl border border-white/8 bg-white/[0.025] p-5 hover:border-[#D6A74A]/25 transition-all duration-300"
                   >
-                    <div className="inline-flex size-10 items-center justify-center rounded-xl bg-[#D6A74A]/10 text-[#D6A74A] mb-3">
-                      <Icon className="size-5" />
+                    <div className="flex items-center gap-3 mb-3 pb-3 border-b border-white/[0.06]">
+                      <Icon className="size-4 text-[#D6A74A] shrink-0" strokeWidth={1.5} />
+                      <h3 className="font-bold text-white text-sm">{h.title}</h3>
                     </div>
-                    <h3 className="font-bold text-white">{h.title}</h3>
-                    <p className="mt-1.5 text-sm text-white/50 leading-relaxed">
+                    <p className="text-sm text-white/50 leading-relaxed font-light">
                       {h.description}
                     </p>
                   </motion.div>

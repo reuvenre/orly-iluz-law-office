@@ -1,9 +1,11 @@
 import {
   Building2,
-  Handshake,
-  Landmark,
+  FileSignature,
+  KeyRound,
+  Route,
+  Scale,
+  ScanSearch,
   type LucideIcon,
-  ShieldCheck,
 } from "lucide-react";
 
 export type Service = {
@@ -102,7 +104,7 @@ export const contentHe: Content = {
           "ניהול מו״מ והסכם רכישה",
           "ליווי עד רישום זכויות",
         ],
-        icon: Landmark,
+        icon: ScanSearch,
       },
       {
         id: "sellers",
@@ -110,7 +112,7 @@ export const contentHe: Content = {
         description:
           "תמחור משפטי נכון, חוזה שמקטין סיכונים, ותיאום בין כל הגורמים — כדי לסגור עסקה בביטחון.",
         bullets: ["טיוטות והסכם מכר", "מנגנוני בטוחות ותשלומים", "ליווי עד מסירה"],
-        icon: Handshake,
+        icon: FileSignature,
       },
       {
         id: "urban_renewal",
@@ -138,17 +140,17 @@ export const contentHe: Content = {
       {
         title: "דיוק ובקרה",
         description: "בדיקות עומק ותיעוד מסודר — בלי קיצורי דרך.",
-        icon: ShieldCheck,
+        icon: ScanSearch,
       },
       {
         title: "תהליך ברור",
         description: "אבן דרך בכל שלב — עם שקיפות מלאה ותקשורת רציפה.",
-        icon: Landmark,
+        icon: Route,
       },
       {
         title: "ייצוג נחוש",
         description: "משא ומתן חכם שמגן עליכם ומקדם את העסקה.",
-        icon: Handshake,
+        icon: Scale,
       },
     ],
   },
