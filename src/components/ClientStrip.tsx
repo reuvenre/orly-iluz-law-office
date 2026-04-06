@@ -1,84 +1,72 @@
 /**
- * ClientStrip — infinite auto-scrolling marquee of client photos.
+ * ClientStrip — infinite scrolling photo marquee.
  *
- * HOW TO ADD REAL PHOTOS:
+ * HOW TO ADD PHOTOS:
  * 1. Drop image files into /public/clients/  (jpg, png, webp)
- * 2. Add an entry to the CLIENTS array below:
- *    { name: "שם הלקוח", label: "רכישת דירה", img: "/clients/photo.jpg" }
+ * 2. Add the path to the PHOTOS array below:
+ *    "/clients/photo.jpg"
  * 3. Save — done.
- *
- * If `img` is omitted, a gold avatar with the first letter is shown instead.
  */
 
-type Client = {
-  name: string;
-  label: string;
-  img?: string;
-};
-
-const CLIENTS: Client[] = [
-  { name: "א׳ כהן",    label: "רכישת דירה",        img: undefined },
-  { name: "מ׳ לוי",    label: "מכירת נכס",          img: undefined },
-  { name: "נ׳ מזרחי",  label: "התחדשות עירונית",    img: undefined },
-  { name: "ר׳ שמעון",  label: "רכישת דירה",        img: undefined },
-  { name: "ד׳ אברהם",  label: "עסקת קומבינציה",    img: undefined },
-  { name: "י׳ בן דוד", label: "מכירת נכס",          img: undefined },
-  { name: "ש׳ פרץ",    label: "התחדשות עירונית",    img: undefined },
-  { name: "ת׳ גרוס",   label: "רכישת דירה",        img: undefined },
+const PHOTOS: string[] = [
+  // הוסף כאן תמונות לדוגמה:
+  // "/clients/deal1.jpg",
+  // "/clients/deal2.jpg",
 ];
 
-function ClientCard({ client }: { client: Client }) {
+// Placeholder cards shown when no real photos are uploaded yet
+const PLACEHOLDERS = Array.from({ length: 8 }, (_, i) => i);
+
+function PhotoCard({ src }: { src?: string }) {
   return (
-    <div className="flex items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.025] px-4 py-3 shrink-0 w-52 hover:border-[#D6A74A]/25 transition-colors duration-300">
-      {/* Photo or avatar */}
-      {client.img ? (
+    <div className="shrink-0 size-28 md:size-32 rounded-2xl overflow-hidden border border-white/8 bg-white/[0.03]">
+      {src ? (
         <img
-          src={client.img}
-          alt={client.name}
-          className="size-11 rounded-full object-cover shrink-0 border border-white/10"
+          src={src}
+          alt="עסקה שהושלמה"
+          className="w-full h-full object-cover"
         />
       ) : (
-        <div className="size-11 rounded-full bg-[#D6A74A]/10 border border-[#D6A74A]/20 flex items-center justify-center text-[#D6A74A] font-bold text-base shrink-0">
-          {client.name.charAt(0)}
+        <div className="w-full h-full bg-gradient-to-br from-[#D6A74A]/8 via-[#D6A74A]/4 to-transparent flex items-center justify-center">
+          <svg className="size-8 text-[#D6A74A]/20" viewBox="0 0 24 24" fill="none">
+            <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" strokeWidth="1"/>
+            <circle cx="8.5" cy="8.5" r="1.5" stroke="currentColor" strokeWidth="1"/>
+            <path d="M21 15l-5-5L5 21" stroke="currentColor" strokeWidth="1" strokeLinecap="round"/>
+          </svg>
         </div>
       )}
-      <div className="overflow-hidden">
-        <div className="text-sm font-medium text-white truncate">{client.name}</div>
-        <div className="text-xs text-white/45 font-light truncate">{client.label}</div>
-      </div>
-      {/* Checkmark badge */}
-      <div className="mr-auto shrink-0 size-5 rounded-full bg-[#D6A74A]/10 border border-[#D6A74A]/25 flex items-center justify-center">
-        <svg className="size-2.5 text-[#D6A74A]" viewBox="0 0 12 12" fill="none">
-          <path d="M2 6l3 3 5-5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </div>
     </div>
   );
 }
 
 export function ClientStrip() {
-  // Duplicate for seamless loop
-  const doubled = [...CLIENTS, ...CLIENTS];
+  const items = PHOTOS.length > 0 ? PHOTOS : PLACEHOLDERS.map(() => undefined);
+  const doubled = [...items, ...items];
 
   return (
     <div className="relative py-10 overflow-hidden">
       {/* Fade edges */}
-      <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#070b18] to-transparent" />
-      <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#070b18] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 w-28 z-10 bg-gradient-to-l from-[#070b18] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 left-0 w-28 z-10 bg-gradient-to-r from-[#070b18] to-transparent" />
 
-      {/* Label */}
-      <div className="text-center mb-6">
+      {/* Title */}
+      <div className="text-center mb-7">
         <span className="text-xs font-semibold tracking-[0.18em] uppercase text-[#D6A74A]/60">
-          לקוחות שהשלימו עסקה
+          עסקאות שהושלמו
         </span>
       </div>
 
-      {/* Scrolling track — pauses on hover */}
+      {/* Scrolling photos */}
       <div className="flex gap-4 marquee-track hover:[animation-play-state:paused]">
-        {doubled.map((client, i) => (
-          <ClientCard key={i} client={client} />
+        {doubled.map((src, i) => (
+          <PhotoCard key={i} src={src as string | undefined} />
         ))}
       </div>
+
+      {/* Collaboration note */}
+      <p className="text-center mt-7 text-xs text-white/35 font-light tracking-wide">
+        המשרד עובד בשיתוף פעולה עם כלל משרדי התיווך בארץ
+      </p>
     </div>
   );
 }
