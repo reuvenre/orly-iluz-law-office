@@ -10,6 +10,7 @@ import { About } from "@/sections/About";
 import { Testimonials } from "@/sections/Testimonials";
 import { Contact } from "@/sections/Contact";
 import { CtaStrip } from "@/sections/CtaStrip";
+import { ClientStrip } from "@/components/ClientStrip";
 
 function GoldDivider() {
   return <hr className="divider-gold border-0 mx-auto max-w-5xl" />;
@@ -31,6 +32,8 @@ export default function App() {
         <About content={c} />
         <GoldDivider />
         <Testimonials content={c} />
+        <GoldDivider />
+        <ClientStrip />
         <GoldDivider />
         <Contact content={c} />
         <GoldDivider />
