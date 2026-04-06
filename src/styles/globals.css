@@ -26,6 +26,21 @@ body {
   will-change: transform;
 }
 
+@keyframes marqueePhotos {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-33.333%); }
+}
+
+.marquee-photos {
+  animation: marqueePhotos 35s linear infinite;
+  width: max-content;
+  will-change: transform;
+}
+
+.marquee-photos:hover {
+  animation-play-state: paused;
+}
+
 /* ── Skyline float (hero background buildings) ── */
 @keyframes skylineFloat {
   0%, 100% { transform: translateY(0px); }

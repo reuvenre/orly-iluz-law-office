@@ -1,168 +1,68 @@
 /**
- * ClientStrip — auto-advancing photo gallery with spotlight center card.
+ * ClientStrip — seamless infinite photo marquee.
  *
  * HOW TO ADD PHOTOS:
  * 1. Drop image files into /public/clients/  (jpg, png, webp)
- * 2. Add an entry to the PHOTOS array below.
+ * 2. Add the path to the PHOTOS array below.
  * 3. Save — done.
  */
 
-import { useEffect, useState, useCallback } from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { motion } from "motion/react";
-
-const PHOTOS: { src: string; label?: string }[] = [
-  { src: "/clients/pic1.jpg" },
-  { src: "/clients/pic2.jpg" },
-  { src: "/clients/pic3.jpg" },
-  { src: "/clients/pic4.jpg" },
-  { src: "/clients/pic5.jpg" },
-  { src: "/clients/pic6.jpg" },
-  { src: "/clients/pic7.jpg" },
+const PHOTOS: string[] = [
+  "/clients/pic1.jpg",
+  "/clients/pic2.jpg",
+  "/clients/pic3.jpg",
+  "/clients/pic4.jpg",
+  "/clients/pic5.jpg",
+  "/clients/pic6.jpg",
+  "/clients/pic7.jpg",
 ];
 
-const INTERVAL = 4000;
-
-function mod(n: number, m: number) {
-  return ((n % m) + m) % m;
-}
-
 export function ClientStrip() {
-  const count = PHOTOS.length;
-  const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const go = useCallback(
-    (delta: number) => {
-      setActive((prev) => mod(prev + delta, count));
-    },
-    [count],
-  );
-
-  // Auto-advance
-  useEffect(() => {
-    if (paused) return;
-    const id = setInterval(() => go(1), INTERVAL);
-    return () => clearInterval(id);
-  }, [paused, go]);
-
-  const indices = [-1, 0, 1].map((offset) => mod(active + offset, count));
-
-  const variants = {
-    enter: (dir: number) => ({ x: dir > 0 ? 80 : -80, opacity: 0, scale: 0.92 }),
-    center: { x: 0, opacity: 1, scale: 1 },
-    exit: (dir: number) => ({ x: dir > 0 ? -80 : 80, opacity: 0, scale: 0.92 }),
-  };
+  // ×3 repeats guarantees seamless loop regardless of screen width
+  const items = [...PHOTOS, ...PHOTOS, ...PHOTOS];
 
   return (
-    <div
-      className="relative py-10"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-    >
+    <div className="relative py-10">
       {/* Title */}
-      <div className="text-center mb-10">
+      <div className="text-center mb-8">
         <span className="text-xs font-semibold tracking-[0.18em] uppercase text-[#D6A74A]/60">
           עסקאות שהושלמו
         </span>
       </div>
 
-      {/* Gallery */}
-      <div className="relative mx-auto max-w-5xl px-4">
-        <div className="grid grid-cols-3 gap-4 items-center">
-          {indices.map((photoIdx, slotIdx) => {
-            const isCenter = slotIdx === 1;
-            const photo = PHOTOS[photoIdx];
-            return (
-              <motion.div
-                key={photoIdx}
-                layout
-                animate={{
-                  scale: isCenter ? 1 : 0.88,
-                  opacity: isCenter ? 1 : 0.45,
-                  filter: isCenter ? "blur(0px)" : "blur(1.5px)",
-                }}
-                transition={{ duration: 0.5, ease: [0.32, 0, 0.67, 0] }}
-                className={`relative overflow-hidden rounded-2xl border cursor-pointer
-                  ${isCenter
-                    ? "aspect-[4/3] border-[#D6A74A]/25 shadow-2xl shadow-black/40"
-                    : "aspect-[4/3] border-white/8"
-                  }`}
-                onClick={() => {
-                  if (slotIdx === 0) go(-1);
-                  if (slotIdx === 2) go(1);
-                }}
+      {/* Scrolling strip */}
+      <div className="overflow-hidden">
+        {/* Fade edges */}
+        <div className="relative">
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-[#070b18] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-[#070b18] to-transparent" />
+
+          <div className="flex gap-5 marquee-photos">
+            {items.map((src, i) => (
+              <div
+                key={i}
+                className="shrink-0 w-64 aspect-[4/3] rounded-2xl overflow-hidden border border-white/10"
               >
                 <img
-                  src={photo.src}
+                  src={src}
                   alt="עסקה שהושלמה"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover opacity-85 hover:opacity-100 transition-opacity duration-300"
                   onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).style.display = "none";
-                    (e.currentTarget.parentElement as HTMLElement).classList.add("placeholder-card");
+                    const el = e.currentTarget.parentElement as HTMLElement;
+                    e.currentTarget.remove();
+                    el.classList.add("bg-gradient-to-br", "from-[#D6A74A]/6", "to-transparent");
                   }}
                 />
-
-                {/* Gradient overlay on center */}
-                {isCenter && (
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-                )}
-
-                {/* Center card gold bottom border glow */}
-                {isCenter && (
-                  <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-[#D6A74A]/60 to-transparent" />
-                )}
-              </motion.div>
-            );
-          })}
+              </div>
+            ))}
+          </div>
         </div>
-
-        {/* Prev / Next buttons */}
-        <button
-          type="button"
-          onClick={() => go(-1)}
-          aria-label="הקודם"
-          className="absolute top-1/2 -translate-y-1/2 right-0 md:-right-5 size-9 rounded-full border border-white/10 bg-[#070b18]/80 backdrop-blur flex items-center justify-center text-white/60 hover:text-white hover:border-white/25 transition-all"
-        >
-          <ChevronRight className="size-4" />
-        </button>
-        <button
-          type="button"
-          onClick={() => go(1)}
-          aria-label="הבא"
-          className="absolute top-1/2 -translate-y-1/2 left-0 md:-left-5 size-9 rounded-full border border-white/10 bg-[#070b18]/80 backdrop-blur flex items-center justify-center text-white/60 hover:text-white hover:border-white/25 transition-all"
-        >
-          <ChevronLeft className="size-4" />
-        </button>
-      </div>
-
-      {/* Dot indicators */}
-      <div className="flex justify-center gap-2 mt-7">
-        {PHOTOS.map((_, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setActive(i)}
-            aria-label={`תמונה ${i + 1}`}
-            className={`transition-all duration-300 rounded-full ${
-              i === active
-                ? "w-5 h-1.5 bg-[#D6A74A]"
-                : "w-1.5 h-1.5 bg-white/20 hover:bg-white/40"
-            }`}
-          />
-        ))}
       </div>
 
       {/* Collaboration note */}
-      <p className="text-center mt-7 text-xs text-white/35 font-light tracking-wide">
+      <p className="text-center mt-8 text-xs text-white/30 font-light tracking-wide">
         המשרד עובד בשיתוף פעולה עם כלל משרדי התיווך בארץ
       </p>
-
-      {/* Placeholder fallback style */}
-      <style>{`
-        .placeholder-card {
-          background: linear-gradient(135deg, rgba(214,167,74,0.06), rgba(214,167,74,0.02));
-        }
-      `}</style>
     </div>
   );
 }
