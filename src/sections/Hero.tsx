@@ -56,7 +56,7 @@ export function Hero({ content }: { content: Content }) {
           <img
             src="/logo-orly.png"
             alt="אורלי אילוז משרד עורכי דין"
-            className="h-20 w-auto object-contain invert mix-blend-screen"
+            className="h-20 w-auto object-contain"
           />
         </motion.div>
 

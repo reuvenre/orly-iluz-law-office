@@ -25,7 +25,7 @@ export function Header({ content }: { content: Content }) {
             <img
               src="/logo-orly.png"
               alt={content.brand.name}
-              className="h-10 w-auto object-contain invert mix-blend-screen"
+              className="h-10 w-auto object-contain"
             />
           </a>
 
