@@ -5,11 +5,15 @@ import {
   Route,
   Scale,
   ScanSearch,
+  Percent,
+  Briefcase,
+  ScrollText,
+  ShieldCheck,
   type LucideIcon,
 } from "lucide-react";
 
 export type Service = {
-  id: "buyers" | "sellers" | "urban_renewal";
+  id: "buyers" | "sellers" | "urban_renewal" | "taxation" | "commercial" | "wills" | "agreements";
   title: string;
   description: string;
   bullets: string[];
@@ -125,6 +129,54 @@ export const contentHe: Content = {
           "ליווי עד חתימות ומימוש",
         ],
         icon: Building2,
+      },
+      {
+        id: "taxation",
+        title: "מיסוי מקרקעין",
+        description:
+          "תכנון מס מקדים לחיסכון כלכלי מרבי — לקוחות פרטיים ועסקיים בעסקאות מורכבות.",
+        bullets: [
+          "מס שבח, רכישה ומע״מ",
+          "פטורים והקלות מס",
+          "ייעוץ לעסקאות מורכבות",
+        ],
+        icon: Percent,
+      },
+      {
+        id: "commercial",
+        title: "משפט מסחרי",
+        description:
+          "ליווי עסקי מקיף — הסכמים מסחריים, התקשרויות עסקיות וייצוג בסכסוכים.",
+        bullets: [
+          "חוזים מסחריים והסכמי שותפות",
+          "ליווי עסקאות נדל״ן מסחריות",
+          "ייצוג בסכסוכים עסקיים",
+        ],
+        icon: Briefcase,
+      },
+      {
+        id: "wills",
+        title: "צוואות וירושות",
+        description:
+          "הגנה על רכושכם ומשפחתכם — עריכת צוואות, ניהול עיזבונות וייצוג בהליכי ירושה.",
+        bullets: [
+          "עריכת צוואות וייפוי כח",
+          "ניהול עיזבונות וצווי ירושה",
+          "ייצוג בסכסוכי ירושה",
+        ],
+        icon: ScrollText,
+      },
+      {
+        id: "agreements",
+        title: "הסכמי ממון ויפוי כח מתמשך",
+        description:
+          "הגדרת זכויות ממוניות לפני ובמהלך הנישואין, ותכנון עתידי מושכל.",
+        bullets: [
+          "הסכמי ממון לפני ובמהלך נישואין",
+          "ייפוי כח מתמשך וחמרה",
+          "הסכמי גירושין וממון",
+        ],
+        icon: ShieldCheck,
       },
     ],
   },
