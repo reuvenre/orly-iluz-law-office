@@ -140,7 +140,7 @@ export function Contact({ content }: { content: Content }) {
             <a
               href={c.links.calendlyUrl}
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 rounded-2xl border border-[#D6A74A]/20 bg-[#D6A74A]/5 px-5 py-4 text-sm text-white/80 hover:border-[#D6A74A]/40 hover:bg-[#D6A74A]/10 transition-all duration-200"
             >
               <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#D6A74A]/15 text-[#D6A74A]">
@@ -168,7 +168,9 @@ export function Contact({ content }: { content: Content }) {
 
             {/* Email */}
             <a
-              href={`mailto:${c.links.email}`}
+              href={`https://mail.google.com/mail/?view=cm&to=${c.links.email}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="flex items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.025] px-5 py-4 text-sm text-white/75 hover:border-white/15 hover:bg-white/[0.05] transition-all duration-200"
             >
               <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#123CFF]/12 text-[#AFC2FF]">
@@ -181,7 +183,12 @@ export function Contact({ content }: { content: Content }) {
             </a>
 
             {/* Address */}
-            <div className="flex items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.025] px-5 py-4 text-sm text-white/75">
+            <a
+              href="https://maps.google.com/?q=רחוב+הרוקמים+23+חולון"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 rounded-2xl border border-white/8 bg-white/[0.025] px-5 py-4 text-sm text-white/75 hover:border-white/15 hover:bg-white/[0.05] transition-all duration-200"
+            >
               <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#123CFF]/12 text-[#AFC2FF]">
                 <MapPin className="size-4" />
               </span>
@@ -189,7 +196,7 @@ export function Contact({ content }: { content: Content }) {
                 <div className="text-xs text-white/45 mb-0.5">{c.contact.addressLabel}</div>
                 <div className="font-medium text-white/85">{c.links.address}</div>
               </div>
-            </div>
+            </a>
           </motion.div>
 
           {/* ── Form column ── */}

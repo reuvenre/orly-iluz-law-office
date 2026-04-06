@@ -45,14 +45,11 @@ export function Header({ content }: { content: Content }) {
 
           {/* ── Desktop CTA + Mobile hamburger ── */}
           <div className="flex items-center gap-2">
-            <Button asChild size="sm" variant="outline" className="hidden sm:inline-flex">
+            <Button asChild size="sm" variant="secondary" className="hidden sm:inline-flex">
               <a href="#contact">
                 <PhoneCall className="size-3.5" />
                 {content.hero.ctaPrimary}
               </a>
-            </Button>
-            <Button asChild size="sm" variant="secondary" className="hidden md:inline-flex">
-              <a href="#contact">{content.hero.ctaPrimary}</a>
             </Button>
 
             {/* Hamburger — mobile only */}
