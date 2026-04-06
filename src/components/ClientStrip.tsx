@@ -1,5 +1,5 @@
 /**
- * ClientStrip — seamless infinite photo marquee.
+ * ClientStrip — seamless infinite photo marquee (rAF-driven).
  *
  * HOW TO ADD PHOTOS:
  * 1. Drop image files into /public/clients/  (jpg, png, webp)
@@ -7,7 +7,7 @@
  * 3. Save — done.
  */
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef } from "react";
 
 const PHOTOS: string[] = [
   "/clients/pic1.jpg",
@@ -19,29 +19,48 @@ const PHOTOS: string[] = [
   "/clients/pic7.jpg",
 ];
 
-export function ClientStrip() {
-  const [ready, setReady] = useState(false);
-  // ×2 — one real set + one clone for seamless loop. Animation moves exactly -50%.
-  const items = [...PHOTOS, ...PHOTOS];
+const SPEED = 0.45; // px per frame (~27px/s at 60fps)
 
-  // Preload all images via JS; start animation once every image resolves (load or error).
+export function ClientStrip() {
+  const trackRef = useRef<HTMLDivElement>(null);
+  const xRef = useRef(0);
+  const rafRef = useRef(0);
+  const pausedRef = useRef(true);
+
   useEffect(() => {
+    // Preload all images before starting scroll
     let resolved = 0;
-    const total = PHOTOS.length;
-    const done = () => {
-      resolved++;
-      if (resolved >= total) setReady(true);
-    };
     PHOTOS.forEach((src) => {
       const img = new Image();
-      img.onload = done;
-      img.onerror = done;
+      img.onload = img.onerror = () => {
+        if (++resolved >= PHOTOS.length) pausedRef.current = false;
+      };
       img.src = src;
     });
-    // Safety fallback — show after 4 s regardless
-    const t = setTimeout(() => setReady(true), 4000);
-    return () => clearTimeout(t);
+    // Fallback: start after 3s regardless
+    const fallback = setTimeout(() => { pausedRef.current = false; }, 3000);
+
+    const step = () => {
+      const track = trackRef.current;
+      if (track && !pausedRef.current) {
+        xRef.current += SPEED;
+        const half = track.scrollWidth / 2;
+        if (xRef.current >= half) xRef.current = 0;
+        track.style.transform = `translateX(-${xRef.current}px)`;
+      }
+      rafRef.current = requestAnimationFrame(step);
+    };
+
+    rafRef.current = requestAnimationFrame(step);
+
+    return () => {
+      cancelAnimationFrame(rafRef.current);
+      clearTimeout(fallback);
+    };
   }, []);
+
+  // ×2 — one real set + one clone for seamless loop
+  const items = [...PHOTOS, ...PHOTOS];
 
   return (
     <div className="relative py-10">
@@ -54,24 +73,28 @@ export function ClientStrip() {
 
       {/* Scrolling strip */}
       <div className="overflow-hidden">
-        {/* Fade edges */}
         <div className="relative">
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-32 z-10 bg-gradient-to-l from-[#070b18] to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 left-0 w-32 z-10 bg-gradient-to-r from-[#070b18] to-transparent" />
+          {/* Fade edges */}
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10 bg-gradient-to-l from-[#070b18] to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#070b18] to-transparent" />
 
-          <div className={`flex gap-5 marquee-photos${ready ? "" : " paused"}`}>
+          <div
+            ref={trackRef}
+            className="flex gap-4 will-change-transform"
+            onMouseEnter={() => { pausedRef.current = true; }}
+            onMouseLeave={() => { pausedRef.current = false; }}
+          >
             {items.map((src, i) => (
               <div
                 key={i}
-                className="shrink-0 w-56 aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 md:w-64"
+                className="shrink-0 w-52 aspect-[4/3] rounded-2xl overflow-hidden border border-white/10 md:w-64"
               >
                 <img
                   src={src}
                   alt="עסקה שהושלמה"
-                  loading="eager"
-                  decoding="async"
                   width={512}
-                  className="w-full h-full object-cover opacity-85 hover:opacity-100 transition-opacity duration-300"
+                  height={384}
+                  className="w-full h-full object-cover opacity-80 hover:opacity-100 transition-opacity duration-300"
                   onError={(e) => {
                     const el = e.currentTarget.parentElement as HTMLElement;
                     e.currentTarget.remove();
