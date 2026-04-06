@@ -1,6 +1,5 @@
 import type { Content } from "@/content/he";
 import { motion } from "motion/react";
-import { ArrowLeft } from "lucide-react";
 
 export function Services({ content }: { content: Content }) {
   return (
@@ -80,15 +79,6 @@ export function Services({ content }: { content: Content }) {
                   ))}
                 </ul>
 
-                <div className="mt-6 pt-4 border-t border-white/[0.06] flex items-center justify-end">
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-1.5 text-xs text-[#D6A74A]/50 group-hover:text-[#D6A74A] transition-colors duration-300"
-                  >
-                    לפרטים נוספים
-                    <ArrowLeft className="size-3" />
-                  </a>
-                </div>
               </motion.div>
             );
           })}
