@@ -99,8 +99,9 @@ function DesktopMarquee() {
       const track = trackRef.current;
       if (track && !pausedRef.current) {
         xRef.current += SPEED;
+        // Use scrollWidth after layout is stable
         const half = track.scrollWidth / 2;
-        if (xRef.current >= half) xRef.current = 0;
+        if (half > 0 && xRef.current >= half) xRef.current -= half;
         track.style.transform = `translateX(-${xRef.current}px)`;
       }
       rafRef.current = requestAnimationFrame(step);
@@ -122,6 +123,7 @@ function DesktopMarquee() {
         <div className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10 bg-gradient-to-r from-[#070b18] to-transparent" />
         <div
           ref={trackRef}
+          dir="ltr"
           className="flex gap-4 will-change-transform"
           onMouseEnter={() => { pausedRef.current = true; }}
           onMouseLeave={() => { pausedRef.current = false; }}
