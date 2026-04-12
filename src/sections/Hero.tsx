@@ -59,7 +59,7 @@ export function Hero({ content }: { content: Content }) {
             height={200}
             loading="eager"
             decoding="sync"
-            className="hero-logo w-auto object-contain"
+            className="hero-logo w-auto object-contain -translate-x-6"
           />
         </motion.div>
 
