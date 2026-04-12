@@ -86,17 +86,17 @@ export const contentHe: Content = {
     { id: "contact", label: "צור קשר" },
   ],
   hero: {
-    headline: "ליווי משפטי — ללא פשרות.",
+    headline: "",
     subheadline:
       "רכישה, מכירה והתחדשות עירונית — עם אסטרטגיה משפטית חכמה, זמינות גבוהה, ותשומת לב לפרטים שמגנים עליכם באמת.",
-    ctaPrimary: "הצטרפו לרשימת הלקוחות שלנו",
-    ctaSecondary: "WhatsApp לשיחה מהירה",
+    ctaPrimary: "התקשרו עכשיו",
+    ctaSecondary: "השאירו פרטים",
     trustBadges: ["נדל״ן", "התחדשות עירונית", "ליווי אישי"],
   },
   services: {
     title: "תחומי התמחות",
     subtitle:
-      "שירות משפטי ממוקד-תוצאה — עם תהליך ברור, שקיפות מלאה ומינימום הפתעות.",
+      "שירות משפטי ממוקד-תוצאה — עם תהליך ברור, ושקיפות מלאה.",
     items: [
       {
         id: "buyers",
@@ -196,12 +196,12 @@ export const contentHe: Content = {
         icon: ScanSearch,
       },
       {
-        title: "תהליך ברור",
+        title: "תהליך",
         description: "אבן דרך בכל שלב — עם שקיפות מלאה ותקשורת רציפה.",
         icon: Route,
       },
       {
-        title: "ייצוג נחוש",
+        title: "ייצוג",
         description: "משא ומתן חכם שמגן עליכם ומקדם את העסקה.",
         icon: Scale,
       },

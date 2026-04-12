@@ -1,8 +1,7 @@
 import { useEffect, useRef } from "react";
 import type { Content } from "@/content/he";
-import { Button } from "@/components/ui/button";
 import { motion, useMotionValue, useTransform, animate, useInView } from "motion/react";
-import { ArrowDown, MessageCircle } from "lucide-react";
+import { ArrowDown } from "lucide-react";
 import { HeroBackground } from "@/components/HeroBackground";
 
 const stats = [
@@ -56,25 +55,27 @@ export function Hero({ content }: { content: Content }) {
           <img
             src="/logo-orly.png"
             alt="אורלי אילוז משרד עורכי דין"
-            className="h-20 w-auto object-contain"
+            className="h-36 w-auto object-contain"
           />
         </motion.div>
 
         {/* ── Headline (serif + shimmer) ── */}
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.07 }}
-          className="text-[2.8rem] font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-[4.75rem]"
-        >
-          {headlineMain}
-          {headlineGold && (
-            <>
-              {" — "}
-              <span className="gold-shimmer">{headlineGold}</span>
-            </>
-          )}
-        </motion.h1>
+        {headlineMain && (
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.07 }}
+            className="text-[2.8rem] font-bold leading-tight tracking-tight text-white md:text-6xl lg:text-[4.75rem]"
+          >
+            {headlineMain}
+            {headlineGold && (
+              <>
+                {" — "}
+                <span className="gold-shimmer">{headlineGold}</span>
+              </>
+            )}
+          </motion.h1>
+        )}
 
         {/* ── Subheadline ── */}
         <motion.p
@@ -86,28 +87,6 @@ export function Hero({ content }: { content: Content }) {
           {content.hero.subheadline}
         </motion.p>
 
-        {/* ── CTAs ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.22 }}
-          className="mt-10 flex flex-col gap-3 sm:flex-row sm:justify-center"
-        >
-          <Button
-            asChild
-            size="lg"
-            variant="secondary"
-            className="px-10 shadow-lg shadow-[#D6A74A]/20 text-base"
-          >
-            <a href="#contact">{content.hero.ctaPrimary}</a>
-          </Button>
-          <Button asChild size="lg" variant="outline" className="px-8">
-            <a href="#contact">
-              <MessageCircle className="size-4" />
-              {content.hero.ctaSecondary}
-            </a>
-          </Button>
-        </motion.div>
 
         {/* ── Trust badges ── */}
         <motion.div

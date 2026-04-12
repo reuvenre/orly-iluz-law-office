@@ -1,5 +1,6 @@
 // Animated city skyline — minimalist buildings with lit windows
 // Relevant to real estate, elegant for a law firm, gold on dark
+import './HeroBackground.css';
 
 const GROUND_Y = 585;
 const SVG_H = 620;
@@ -11,8 +12,7 @@ type Building = {
   h: number;
   winCols: number;
   winRows: number;
-  floatDuration: number;
-  floatDelay: number;
+  animationClass: string;
 };
 
 // Deterministic window-lit pattern (no Math.random)
@@ -21,21 +21,21 @@ function isLit(bIdx: number, row: number, col: number): boolean {
 }
 
 const BUILDINGS: Building[] = [
-  { x: 12,  w: 68,  h: 228, winCols: 3, winRows: 8,  floatDuration: 8.2, floatDelay: 0    },
-  { x: 90,  w: 48,  h: 168, winCols: 2, winRows: 6,  floatDuration: 7.5, floatDelay: 0.8  },
-  { x: 148, w: 88,  h: 308, winCols: 4, winRows: 11, floatDuration: 9.1, floatDelay: 1.4  },
-  { x: 246, w: 46,  h: 142, winCols: 2, winRows: 5,  floatDuration: 7.8, floatDelay: 2.1  },
-  { x: 302, w: 78,  h: 272, winCols: 3, winRows: 10, floatDuration: 8.6, floatDelay: 0.5  },
-  { x: 390, w: 54,  h: 192, winCols: 2, winRows: 7,  floatDuration: 7.3, floatDelay: 1.9  },
-  { x: 454, w: 114, h: 368, winCols: 5, winRows: 14, floatDuration: 10.2, floatDelay: 0.3 },
-  { x: 578, w: 64,  h: 212, winCols: 3, winRows: 8,  floatDuration: 8.0, floatDelay: 1.2  },
-  { x: 652, w: 84,  h: 288, winCols: 4, winRows: 11, floatDuration: 9.4, floatDelay: 2.5  },
-  { x: 746, w: 46,  h: 158, winCols: 2, winRows: 6,  floatDuration: 7.6, floatDelay: 0.9  },
-  { x: 802, w: 74,  h: 244, winCols: 3, winRows: 9,  floatDuration: 8.8, floatDelay: 1.7  },
-  { x: 886, w: 52,  h: 178, winCols: 2, winRows: 6,  floatDuration: 7.4, floatDelay: 3.0  },
-  { x: 948, w: 92,  h: 322, winCols: 4, winRows: 12, floatDuration: 9.7, floatDelay: 0.6  },
-  { x: 1050, w: 62, h: 202, winCols: 3, winRows: 8,  floatDuration: 8.3, floatDelay: 2.2  },
-  { x: 1122, w: 68, h: 172, winCols: 3, winRows: 6,  floatDuration: 7.9, floatDelay: 1.1  },
+  { x: 12,  w: 68,  h: 228, winCols: 3, winRows: 8,  animationClass: 'skylineFloat skyline-float-0' },
+  { x: 90,  w: 48,  h: 168, winCols: 2, winRows: 6,  animationClass: 'skylineFloat skyline-float-1' },
+  { x: 148, w: 88,  h: 308, winCols: 4, winRows: 11, animationClass: 'skylineFloat skyline-float-2' },
+  { x: 246, w: 46,  h: 142, winCols: 2, winRows: 5,  animationClass: 'skylineFloat skyline-float-3' },
+  { x: 302, w: 78,  h: 272, winCols: 3, winRows: 10, animationClass: 'skylineFloat skyline-float-4' },
+  { x: 390, w: 54,  h: 192, winCols: 2, winRows: 7,  animationClass: 'skylineFloat skyline-float-5' },
+  { x: 454, w: 114, h: 368, winCols: 5, winRows: 14, animationClass: 'skylineFloat skyline-float-6' },
+  { x: 578, w: 64,  h: 212, winCols: 3, winRows: 8,  animationClass: 'skylineFloat skyline-float-7' },
+  { x: 652, w: 84,  h: 288, winCols: 4, winRows: 11, animationClass: 'skylineFloat skyline-float-8' },
+  { x: 746, w: 46,  h: 158, winCols: 2, winRows: 6,  animationClass: 'skylineFloat skyline-float-9' },
+  { x: 802, w: 74,  h: 244, winCols: 3, winRows: 9,  animationClass: 'skylineFloat skyline-float-10' },
+  { x: 886, w: 52,  h: 178, winCols: 2, winRows: 6,  animationClass: 'skylineFloat skyline-float-11' },
+  { x: 948, w: 92,  h: 322, winCols: 4, winRows: 12, animationClass: 'skylineFloat skyline-float-12' },
+  { x: 1050, w: 62, h: 202, winCols: 3, winRows: 8,  animationClass: 'skylineFloat skyline-float-13' },
+  { x: 1122, w: 68, h: 172, winCols: 3, winRows: 6,  animationClass: 'skylineFloat skyline-float-14' },
 ];
 
 const WIN_W = 7;
@@ -66,10 +66,9 @@ export function HeroBackground() {
 
         {BUILDINGS.map((b, bIdx) => {
           const topY = GROUND_Y - b.h;
-          const animation = `skylineFloat ${b.floatDuration}s ease-in-out ${b.floatDelay}s infinite`;
 
           return (
-            <g key={bIdx} style={{ animation }}>
+            <g key={bIdx} className={b.animationClass}>
               {/* Building outline */}
               <rect
                 x={b.x}
