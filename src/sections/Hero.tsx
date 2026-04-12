@@ -50,12 +50,16 @@ export function Hero({ content }: { content: Content }) {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.15 }}
-          className="flex justify-center mb-8"
+          className="flex justify-center items-center mb-8"
         >
           <img
             src="/logo-orly.png"
             alt="אורלי אילוז משרד עורכי דין"
-            className="h-36 w-auto object-contain"
+            width={480}
+            height={200}
+            loading="eager"
+            decoding="sync"
+            className="hero-logo w-auto object-contain mx-auto"
           />
         </motion.div>
 
