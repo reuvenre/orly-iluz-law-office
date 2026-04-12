@@ -44,7 +44,7 @@ export function Hero({ content }: { content: Content }) {
         <HeroBackground />
       </div>
 
-      <div className="mx-auto max-w-4xl px-4 py-24 md:py-32 w-full text-center relative">
+      <div className="mx-auto max-w-4xl px-4 py-24 md:py-32 w-full flex flex-col items-center text-center relative">
         {/* ── Logo ── */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -59,7 +59,7 @@ export function Hero({ content }: { content: Content }) {
             height={200}
             loading="eager"
             decoding="sync"
-            className="hero-logo w-auto object-contain mx-auto"
+            className="hero-logo w-auto object-contain"
           />
         </motion.div>
 
