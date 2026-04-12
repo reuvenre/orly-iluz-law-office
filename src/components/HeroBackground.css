@@ -1,0 +1,30 @@
+@keyframes skylineFloat {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+.skylineFloat {
+  animation-name: skylineFloat;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+}
+
+.skyline-float-0  { animation-duration: 8.2s;  animation-delay: 0s;   }
+.skyline-float-1  { animation-duration: 7.5s;  animation-delay: 0.8s; }
+.skyline-float-2  { animation-duration: 9.1s;  animation-delay: 1.4s; }
+.skyline-float-3  { animation-duration: 7.8s;  animation-delay: 2.1s; }
+.skyline-float-4  { animation-duration: 8.6s;  animation-delay: 0.5s; }
+.skyline-float-5  { animation-duration: 7.3s;  animation-delay: 1.9s; }
+.skyline-float-6  { animation-duration: 10.2s; animation-delay: 0.3s; }
+.skyline-float-7  { animation-duration: 8.0s;  animation-delay: 1.2s; }
+.skyline-float-8  { animation-duration: 9.4s;  animation-delay: 2.5s; }
+.skyline-float-9  { animation-duration: 7.6s;  animation-delay: 0.9s; }
+.skyline-float-10 { animation-duration: 8.8s;  animation-delay: 1.7s; }
+.skyline-float-11 { animation-duration: 7.4s;  animation-delay: 3.0s; }
+.skyline-float-12 { animation-duration: 9.7s;  animation-delay: 0.6s; }
+.skyline-float-13 { animation-duration: 8.3s;  animation-delay: 2.2s; }
+.skyline-float-14 { animation-duration: 7.9s;  animation-delay: 1.1s; }
+
+@media (prefers-reduced-motion: reduce) {
+  .skylineFloat { animation: none; }
+}
